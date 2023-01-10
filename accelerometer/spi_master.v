@@ -2,7 +2,7 @@
 
 
 
-module spi_verilog
+module spi_master
     #(
         parameter   p_clkfreq = 100_000_000,
         parameter   p_sclkfreq = 1_000_000,

@@ -39,7 +39,7 @@ reg timer_rd_tick=0;
 reg state;
 
 //instantiation
-spi_verilog dut (
+spi_master dut (
     .clk_i(clk_i),
     .en_i(en),
     .mosi_data_i(mosi_data),
