@@ -3,8 +3,8 @@
 
 
 module uart_rx
-    #(  parameter c_clkfreq = 100_000_000,  
-        parameter c_baudrate= 115_200  
+    #(  parameter p_clkfreq = 100_000_000,  
+        parameter p_baudrate= 115_200  
     ) (
         input clk,
         input rx_i,
@@ -13,11 +13,11 @@ module uart_rx
 
     );
    
-    localparam c_bittimerlim = c_clkfreq/c_baudrate;
+    localparam p_bittimerlim = p_clkfreq/p_baudrate;
     localparam S_IDLE = 2'b00, S_START = 2'b01, S_DATA = 2'b10, S_STOP = 2'b11;
 
 
-    reg [clogb2(c_bittimerlim)-1:0] bittimer = 0;
+    reg [clogb2(p_bittimerlim)-1:0] bittimer = 0;
 	reg [clogb2(7)-1:0] bitcntr ;
 	reg [7:0] shreg = 8'b0 ;
 	reg [1:0] state;
@@ -37,7 +37,7 @@ module uart_rx
             
             S_START : begin	
                 shreg  <= 0;
-                if (bittimer == c_bittimerlim/2-1) begin
+                if (bittimer == p_bittimerlim/2-1) begin
                     state		<= S_DATA;
                     bittimer	<= 0;
                 end    
@@ -47,7 +47,7 @@ module uart_rx
             end
             
             S_DATA : begin	
-                if (bittimer == c_bittimerlim-1) begin
+                if (bittimer == p_bittimerlim-1) begin
                     if (bitcntr == 7) begin
                         state	<= S_STOP;
                         bitcntr	<= 0;
@@ -65,7 +65,7 @@ module uart_rx
            
     
             S_STOP : begin		
-                if (bittimer == c_bittimerlim-1) begin
+                if (bittimer == p_bittimerlim-1) begin
                     state			<= S_IDLE;
                     bittimer		<= 0;
                     rx_done_tick_o	<= 1;

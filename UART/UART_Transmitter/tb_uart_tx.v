@@ -2,10 +2,11 @@
 
 
 
-module tb_uart_tx#(parameter c_clkfreq = 100_000_000,  
-      parameter c_baudrate= 10_000_000,  
-	  parameter c_stopbit = 2,
-	  parameter gonbitsys = 10 
+module tb_uart_tx#(
+	parameter p_clkfreq = 100_000_000,  
+    parameter p_baudrate= 10_000_000,  
+	parameter p_stopbit = 2,
+	parameter gonbitsys = 10 
 	)();
 	
 

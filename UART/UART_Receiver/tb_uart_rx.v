@@ -2,8 +2,8 @@
 
 
 
-module tb_uart_rx  #(   parameter c_clkfreq = 100_000_000,  
-                        parameter c_baudrate= 115_200  //frekans       
+module tb_uart_rx  #(   parameter p_clkfreq = 100_000_000,  
+                        parameter p_baudrate= 115_200  //frekans       
                     ) ();
 
 reg clk;
